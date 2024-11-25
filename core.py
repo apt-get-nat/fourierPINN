@@ -97,7 +97,7 @@ class FourierNN(torch.nn.Module):
         ymodes = torch.hstack((ymodes[0:-1],-ymodes.flip(0)))
         ymodes = ymodes[0:-1]
         zmodes = torch.arange(0,int(zn))
-        kx,ky,kz = torch.meshgrid(xmodes,ymodes,zmodes)
+        kx,ky,kz = torch.meshgrid(xmodes,ymodes,zmodes,indexing='ij')
         
         dxBx = torch.fft.irfftn(torch.mul(fullx,1j*kx))
         dyBx = torch.fft.irfftn(torch.mul(fullx,1j*ky))
